@@ -42,6 +42,10 @@ next-hop inherits neighbor IP.
 
 RIB is collected from customer's network with CLI. Output is stored in a txt file. genie offline parsing capacity is used to extract prefixes, next-hop, etc. The tools supports both IPv4 and IPv6. See https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv4 and https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv6.
 
+## Todo
+- One file to handle both IPv4 and IPv6.
+- Add next-hop support
+
 ## Acknowledgements
 I'd like to thanks Antoine Orsoni for his support. You can check Antoine's work on xrdocs.io website: https://xrdocs.io/programmability/tutorials/pyats-series-parsing-like-a-pro/
 

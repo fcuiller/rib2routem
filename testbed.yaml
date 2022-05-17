@@ -1,0 +1,15 @@
+devices:
+  iosxr1:
+    type: router
+    os: iosxr
+    # Step 2: credentials
+    credentials:
+      default:
+        username: admin
+        password: C1sco12345
+    # Step 3: connection parameters
+    connections:
+      vty:
+        protocol: ssh
+        ip: sbx-iosxr-mgmt.cisco.com
+        port: 8181

@@ -38,6 +38,10 @@ The replay file has following minimal format and requires BGP mandatory attribut
 ```
 next-hop inherits neighbor IP.
 
+### RIB input
+
+RIB is collected from customer's network with CLI. Output is stored in a txt file. genie offline parsing capacity is used to extract prefixes, next-hop, etc. The tools supports both IPv4 and IPv6. See https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv4 and https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv6.
+
 ## Acknowledgements
 I'd like to thanks Antoine Orsoni for his support. You can check Antoine's work on xrdocs.io website: https://xrdocs.io/programmability/tutorials/pyats-series-parsing-like-a-pro/
 

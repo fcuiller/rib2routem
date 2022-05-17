@@ -1,2 +1,43 @@
 # rib2routem
-Python tool to convert IOS-XR RIB to routem configuration file for easy replay in the lab
+Python tool to convert IOS-XR RIB to routem configuration file for easy replay in the lab. It leverages Cisco pyATS to parse IOS-XR RIB output.
+## Introduction
+In order to test router's FIB, a common technique is to use a traffic generator such IXIA or Spirent and generate prefixes. While this is fast and easy to do, this doesn't represent customers' network reality.  
+rib2routem is a tool used to:
+- parse a production router RIB (show route ipv4 unicast, show route ipv6 unicast)
+- extract prefixes, next-hop
+- generate a routem configuration file to replay the RIB in a lab
+
+## routem
+routem is an old-school and proprietary Cisco tool to generate control plan. If you search hard enough on Internet, you'll find copies.
+routem can be configured to replay a RIB, using ASCII file. In this mode, 2 configuration files are required.
+
+### Establishing BGP peering with routem
+RIB is replayed via a simple BGP session between SUT and routem. Following sample configuration is used for IPv4 unicast:
+
+```
+router bgp 65537
+bgp_id 1.63.51.21
+neighbor 1.63.51.51 remote-as 65537
+neighbor 1.63.51.51 update-source 1.63.51.21
+capability ipv4 unicast
+capability refresh
+capability 4bytes-as
+replay file LER.IPv4.cfg ascii
+```
+
+Note the last line of this configuration file: this is where prefixes are stored.
+
+### Replay prefixes
+
+The replay file has following minimal format and requires BGP mandatory attributes:
+
+```
+ advertised 1.0.0.0/24
+ origin igp
+ aspath
+```
+next-hop inherits neighbor IP.
+
+## Acknowledgements
+I'd like to thanks Antoine Orsoni for his support. You can check Antoine's work on xrdocs.io website: https://xrdocs.io/programmability/tutorials/pyats-series-parsing-like-a-pro/
+

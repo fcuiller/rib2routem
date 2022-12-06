@@ -42,6 +42,16 @@ next-hop inherits neighbor IP.
 
 RIB is collected from customer's network with CLI. Output is stored in a txt file. genie offline parsing capacity is used to extract prefixes, next-hop, etc. The tools supports both IPv4 and IPv6. See https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv4 and https://pubhub.devnetcloud.com/media/genie-feature-browser/docs/#/parsers/show%2520route%2520ipv6.
 
+
+## Generating routem replay file: rib2routem utilisation
+
+1. Get 'show route ipv4 unicast' or 'show route ipv6 unicast' output and store it in a .txt file
+2. Edit both python files to point to the .txt file location
+3. Execute rib2routem and redirect to a file
+```
+python3 rib2routem.py > LER-v4.cfg
+```
+
 ## Todo
 - One file to handle both IPv4 and IPv6.
 - Add next-hop support

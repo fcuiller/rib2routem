@@ -6,15 +6,15 @@ with open('LER.IPv4.txt', 'r') as file:
 
 # Load testbed
 testbed = testbed.load('./testbed.yaml')
-iosxr1 = testbed.devices["iosxr1"]
+ios1 = testbed.devices["ios1"]
 
 # Parse output
-ip_route = iosxr1.parse('show route ipv4', output=data)
+ip_route = ios1.parse('show ip route', output=data)
 
-for prefix, details in ip_route['vrf']['default']['address_family']['ipv4']['routes'].items():
-        print(f" advertised {prefix}")
-        print(" origin igp")
-        print(" nexthop")
-        print(" aspath")
-        print(" timestamped 1511540052 387402")
-        print()
+for prefix in ip_route['vrf']['default']['address_family']['ipv4']['routes']:
+    print(f" advertised {prefix}")
+    print(" origin igp")
+    print(" nexthop")
+    print(" aspath")
+    print(" timestamped 1511540052 387402")
+    print()
